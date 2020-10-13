@@ -1,32 +1,6 @@
-## Welcome to GitHub Pages
+# Location Clustering for Restaurants in Mumbai City.
+<a href="https://imgur.com/69tB8xp"><img src="https://i.imgur.com/69tB8xp.png" title="source: imgur.com" /></a>
 
-You can use the [editor on GitHub](https://github.com/chirag4798/ClusteringLocations/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 ## Introduction
 
 Mumbai is the most populated city in the world and fifth most densely populated city. Its is the financial capital of India and its no surprise that Mumbai is also the restaurant capital of India. The restaurant business has flourished with the local food and cuisine as well as multinational franchises. With such over-crowdedness comes cut throat competition. One of the main aspects of starting or expanding a restaurant business is choosing its location. Location of a restaurant decides the amount of traffic in a restaurant which makes it necessary to optimize.
@@ -38,11 +12,11 @@ A restaurant franchise owner should understand that expanding their business mig
 
 Data associated with restaurants is collected using the Foursquare API. It is an excellent tool to collect venues at a given co-ordinate.The Foursquare API allows application developers to interact with the Foursquare platform. The API itself is a RESTful set of addresses to which you can send requests, so there's really nothing to download onto your server. To use the Foursquare API, we first need a list of boroughs in Mumbai along with their pin-codes. 
 
-[Pincode Locations](https://i.imgur.com/CiTKbnN.png)
+<a href="https://imgur.com/CiTKbnN"><img src="https://i.imgur.com/CiTKbnN.png" title="source: imgur.com" /></a>
 
 After which the latitude and longitude value for the given pin-codes are required. This can be achieved by using a geocoder. We can begin our analysis by getting the details of restaurant venues in 7.5 km radius of the given location, this will ensure major parts of the city are covered without worrying about overlapping locations. Data cleaning is required to get rid of the venues which are not restaurants or venues that are not related to food. Once the resulting data frame is obtained the process of data collection can be considered complete and we can proceed with exploratory data analysis. The data-set has locations of 8500 restaurants in Mumbai along with their name and the category of restaurant.
 
-[Geo Data](https://i.imgur.com/4r17MKb.png)
+<a href="https://imgur.com/4r17MKb"><img src="https://i.imgur.com/4r17MKb.png" title="source: imgur.com" /></a>
 
 
 ## Methodology
@@ -65,21 +39,21 @@ Following data sources will be needed to extract/generate the required informati
 
 Relevant features have to be extracted from the data, the data-set contains noisy features like sports stadiums, scenic lookouts and monuments. Features with key words restaurant in their category have to be extracted. Extracted variables have to be converted to categorical variables,  where each category will form an attribute with binary values.
 
-[Features](https://i.imgur.com/rsGLnAS.png)
+<a href="https://imgur.com/rsGLnAS"><img src="https://i.imgur.com/rsGLnAS.png" title="source: imgur.com" /></a>
 
 ## Exploratory Data Analysis 
 
 Exploring the data gives us valuable insights before modelling the data for machine learning. Examining the market share of various restaurants shows that Indian restaurants are the most common restaurant type in Mumbai with about 33% of the market share. People in India are very culturally rooted and prefer having food with family in familiar setting which is the reason for the popularity of Indian restaurants. But the younger generation have more inclination towards Cafe's and Coffee places. These places have trendy ambience and younger people like to hangout there after work and college with their friends. The popularity is in an upward trend with Cafe's and Coffee houses, already having a hefty market share. The market may have been saturated with Indian restaurants but there is still room left for Cafe's and Coffee places for expansion.
 
-[Restaurant Market Share](https://i.imgur.com/zlCUoeD.png)
+<a href="https://imgur.com/zlCUoeD"><img src="https://i.imgur.com/zlCUoeD.png" title="source: imgur.com" /></a>
 
 Looking at common venues in each neighborhood also concludes that Indian restaurants are the most common restaurants in Mumbai, but other restaurants are gaining popularity steadily. The closest to Indian restaurants in popularity are the Cafe’s and Coffee places. When combined they cover nearly 23% of the market share. Dessert shops in India are generally sweet/confectionery shops and not restaurant per-say, but are quite popular too. 
 
-[Img1](https://i.imgur.com/BEVSbCQ.png)
-[Img2](https://i.imgur.com/P73835K.png)
+<a href="https://imgur.com/BEVSbCQ"><img src="https://i.imgur.com/BEVSbCQ.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/P73835K"><img src="https://i.imgur.com/P73835K.png" title="source: imgur.com" /></a>
 
 
-## Modelling
+## Modeling
 For a clustering problem the attributes with binary data are prepared. The attributes contain information about the type of restaurant in each neighborhood and how common are those restaurant. Agglomerative clustering algorithm is used to get a rough idea about the number of clusters that can be extracted from the data without losing useful information. A distance matrix is created for each point with a randomly assigned cluster centre. An agglomerative cluster can be visualized using a dendrogram. The x-axis on a dendrogram represents the distance between individual clusters. The y-axis is a list of boroughs with coloured lines indicating the cluster which it belongs. The names on the y-axis are arranged in such a manner that similar neighbors are arranged closer to each other. The affinity parameter is set to ‘l1’ and the linkage is set to ‘average’. Average uses the average of the distances of each observation of the two sets. Once we have a rough idea about the number of clusters we can tune our Kmeans model.
 
 
@@ -92,31 +66,50 @@ The psedocode for Agglomerative is straight forward.
 - Let each data point be a cluster
 - Repeat: Merge the two closest clusters and update the proximity matrix until only a single cluster remains.
 
-[Agglomerative Clusters](https://i.imgur.com/Ecpqu9d.png)
+<a href="https://imgur.com/Ecpqu9d"><img src="https://i.imgur.com/Ecpqu9d.png" title="source: imgur.com" /></a>
 
 A highly co-related neighborhood with virtually zero distance between them in the distance matrix can be seen, the locations being Bazargate, Bandra, Bhawani Shankar Road, Chembur, Cotton Exchange, DM Colony, Ghatkopar, Govandi, Haji Ali, NITIE and Raj Bhavan areas. The number of clusters for Kmeans algorithm can also be optimized using the elbow method and calculating the sum of squared error among clusters and the silhouette scores of the model for different values of k. A minor elbow can be observed at k=5 in an otherwise smooth curve. 
 
-[Elbow Method](https://i.imgur.com/GJtycYj.png)
+<a href="https://imgur.com/GJtycYj"><img src="https://i.imgur.com/GJtycYj.png" title="source: imgur.com" /></a>
+
+For k=5 the neighborhoods are clustered in this manner. Even though the model wasn’t trained on any location based data, its not a surprise that closer neighborhoods are more similar to each other, this indicates a good model.
+
+<a href="https://imgur.com/i1jgpqc"><img src="https://i.imgur.com/i1jgpqc.png" title="source: imgur.com" /></a>
+
+This group of neighborhoods have a lot in common as both Agglomerative and Kmeans clustering clustered them into the same group. Once we start out at any one of these locations it would be easier to expand in other locations. Here the overall trend is followed, that Indian restaurants are popular, other than that Dessert shops are quite popular too. Dessert shops in India tend to be Sweet shops and confectioneries, they are not a restaurant per-say but are quite popular. Lets focus on the Coffee shops and Cafe's here. The area is not saturated with it but can be seen as quite popular. Lets narrow our search on the Bandra region of the cluster. Bandra is located at the heart of the city with lot of foot traffic around it. The Bandra Kurla Complex in Bandra is considered the financial hub of the city. 
+
+<a href="https://imgur.com/M1eUlQ6"><img src="https://i.imgur.com/M1eUlQ6.png" title="source: imgur.com" /></a>
+
+Bandra Kurla Complex is a business and residential district in Bandra, Mumbai. It is a prominent commercial hub in India. According to MMRDA, the complex is the first of a series of "growth centers" created to "arrest further concentration" of offices and commercial activities in South Mumbai. It has aided to decongest the CBD in South Mumbai while seeding new areas of planned commercial real estate in the metropolitan region. There are approximately 400,000 people working in various offices throughout the BKC, which makes it ideal to set up a cafe. Considering a radius of around 5kms around the BKC, equidistant grid points are created about 100m apart from each other. These grid points act as potential candidates for setting up the cafe. The market share graph of Bandra indicates that Cafe’s are not as common in this region as they are in the rest of the city. This is a good indication that there is opportunity to expand in this region. Cafe, perfectly complements our chosen location.The main customers of a cafe in ascending order are, employees or Working class(Proximity to BKC),couples (married & unmarried both),youngsters (17–30)(Proximity to Mumbai University).
+
+<a href="https://imgur.com/ghWK3SS"><img src="https://i.imgur.com/ghWK3SS.png" title="source: imgur.com" /></a>
+
+The equidistant grid-points can be visualized using a map. The points stretch from Dharavi in the south to the Airport in the north. The locations abundantly cover the centre of the city. This part of the city is one of the most accessible.
+
+<a href="https://imgur.com/igJay4V"><img src="https://i.imgur.com/igJay4V.png" title="source: imgur.com" /></a>
+
+The density of  restaurants in a region can be visualized using a heat-map. It can be seen that very less area is left untouched by a restaurant, but the same map for cafe tells a completely different story. It shows that only about 15% of the restaurants are cafes. Further analysis revealed that a Cafe is at a distance of approximately 1km from each grid-point whereas a restaurant is at an average distance of 400m.
+
+<a href="https://imgur.com/hLcJsMK"><img src="https://i.imgur.com/hLcJsMK.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/YT5zxoV"><img src="https://i.imgur.com/YT5zxoV.png" title="source: imgur.com" /></a>
+
+Lets further narrow our region to the place just north of BKC, where the region looks fairly empty of Cafes. This region is in the vicinity of Mumbai University. It gives an added advantage to the Cafe business due to the presence of large population of the target demographic.
+
+<a href="https://imgur.com/tuWt0Jv"><img src="https://i.imgur.com/tuWt0Jv.png" title="source: imgur.com" /></a>
+
+The region looks devoid of competitors. The procedure of making grid-points is repeated with slight variation. The grid-points now only cover regions where there are no Cafes in a 400m radius and no more than 2 restaurants in its vicinity. This step will ensure that the business will have little to no competition from its surroundings. The points of interest can be further clustered into regions using the k-means algorithm. The centers of the clustered locations can be considered the final suggestions for setting up a Cafe. We have created 6 addresses representing centers of zones containing locations with low number of restaurants and no Cafe’s nearby, all zones being fairly close to Bandra Kurla Complex. Although zones are shown on map with a circle, their shape is actually very irregular and their centers/addresses should be considered only as a starting point for exploring area neighborhoods in search for potential restaurant locations.
+
+<a href="https://imgur.com/JT0rF2p"><img src="https://i.imgur.com/JT0rF2p.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/lAKQ4Yc"><img src="https://i.imgur.com/lAKQ4Yc.png" title="source: imgur.com" /></a>
 
 
+## Results and Discussion
 
+The analysis shows that although there is a great number of restaurants in Mumbai (>8500 in our initial area of interest which was 7.5x7.5km around each pin-code), there are pockets of low restaurant density fairly close to Bandra Kurla Complex. Highest concentration of restaurants was detected west, south from Bandra Kurla Complex, so we focused our attention to areas north, near the Mumbai University, where a number of pockets of low restaurant density was found. After directing our attention to this more narrow area of interest (covering approx. 5x5km south-east from Bandra Kurla Complex) we first created a dense grid of location candidates (spaced 100m apart); those locations were then filtered so that those with more than two restaurants in radius of 250m and those with an Cafe’s closer than 400m were removed.Those location candidates were then clustered to create zones of interest which contain greatest number of location candidates. Addresses of centers of those zones were also generated using reverse geocoding to be used as markers/starting points for more detailed local analysis based on other factors.
 
+Result of all this is 6 zones containing largest number of potential new restaurant locations based on number of and distance to existing venues - both restaurants in general and Cafe’s particularly. This, of course, does not imply that those zones are actually optimal locations for a new restaurant! Purpose of this analysis was to only provide info on areas close to Bandra Kurla Complex but not crowded with existing restaurants (particularly Cafe) - it is entirely possible that there is a very good reason for small number of restaurants in any of those areas, reasons which would make them unsuitable for a new restaurant regardless of lack of competition in the area. Recommended zones should therefore be considered only as a starting point for more detailed analysis which could eventually result in location which has not only no nearby competition but also other factors taken into account and all other relevant conditions met.
 
+## Conclusion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Purpose of this project was to identify clusters similar neighborhoods in Mumbai with low number of restaurants (particularly Cafe’s) in order to aid stakeholders in narrowing down the search for optimal location for a new Cafe. Clustering Neighborhoods in Mumbai and selecting highly co-related neighborhoods which can be used in future for expansion, by calculating restaurant density distribution from Foursquare data we have first identified general boroughs that justify further analysis (Bandra), and then generated extensive collection of locations which satisfy some basic requirements regarding existing nearby restaurants. Clustering of those locations was then performed in order to create major zones of interest (containing greatest number of potential locations) and addresses of those zone centers were created to be used as starting points for final exploration by stakeholders.
+Final decision on optimal restaurant location will be made by stakeholders based on specific characteristics of neighborhoods and locations in every recommended zone, taking into consideration additional factors like attractiveness of each location (proximity to park or water), levels of noise / proximity to major roads, real estate availability, prices, social and economic dynamics of every neighborhood etc.
