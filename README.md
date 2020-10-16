@@ -3,8 +3,8 @@
 
 # Location Clustering for Restaurants in Mumbai City.
 
-<a href="https://imgur.com/69tB8xp"><img src="https://i.imgur.com/69tB8xp.png" title="source: imgur.com" width="920" heigth="600"/></a>
-
+<p align="middle"><img src="https://i.imgur.com/69tB8xp.png" title="source: imgur.com" width="920" heigth="600" /></p>
+<p align="middle">Gateway of India - Mumbai</p>
 
 ## Introduction 
 <p align="justify">
@@ -22,15 +22,15 @@ Data associated with restaurants is collected using the Foursquare API. It is an
 </p>
 
 
-<a href="https://imgur.com/CiTKbnN"><img src="https://i.imgur.com/CiTKbnN.png" title="source: imgur.com" /></a>
-
+<p align="middle"><img src="https://i.imgur.com/CiTKbnN.png" title="source: imgur.com" /></p>
+<p align="middle">Pincode Locations visualized on a Map of Mumbai</p>
 
 <p align="justify">
 After which the latitude and longitude value for the given pin-codes are required. This can be achieved by using a geocoder. We can begin our analysis by getting the details of restaurant venues in 7.5 km radius of the given location, this will ensure major parts of the city are covered without worrying about overlapping locations. Data cleaning is required to get rid of the venues which are not restaurants or venues that are not related to food. Once the resulting data frame is obtained the process of data collection can be considered complete and we can proceed with exploratory data analysis. The data-set has locations of 8500 restaurants in Mumbai along with their name and the category of restaurant.
 </p>
 
-<a href="https://imgur.com/4r17MKb"><img src="https://i.imgur.com/4r17MKb.png" title="source: imgur.com" /></a>
-
+<p align="middle"><img src="https://i.imgur.com/4r17MKb.png" title="source: imgur.com"/></p>
+<p align="middle">Latitude, Longitude, Venue Information</p>
 
 ## Methodology
  
@@ -58,7 +58,8 @@ Following data sources will be needed to extract/generate the required informati
 Relevant features have to be extracted from the data, the data-set contains noisy features like sports stadiums, scenic lookouts and monuments. Features with key words restaurant in their category have to be extracted. Extracted variables have to be converted to categorical variables,  where each category will form an attribute with binary values.
 </p>
 
-<a href="https://imgur.com/rsGLnAS"><img src="https://i.imgur.com/rsGLnAS.png" title="source: imgur.com" /></a>
+<p align="middle"><img src="https://i.imgur.com/rsGLnAS.png" title="source: imgur.com" /></p>
+<p align="middle">One Hot Encoding Venue Category</p>
 
 ## Exploratory Data Analysis 
  
@@ -66,14 +67,12 @@ Relevant features have to be extracted from the data, the data-set contains nois
 Exploring the data gives us valuable insights before modelling the data for machine learning. Examining the market share of various restaurants shows that Indian restaurants are the most common restaurant type in Mumbai with about 33% of the market share. People in India are very culturally rooted and prefer having food with family in familiar setting which is the reason for the popularity of Indian restaurants. But the younger generation have more inclination towards Cafe's and Coffee places. These places have trendy ambience and younger people like to hangout there after work and college with their friends. The popularity is in an upward trend with Cafe's and Coffee houses, already having a hefty market share. The market may have been saturated with Indian restaurants but there is still room left for Cafe's and Coffee places for expansion.
 </p>
 
-<a href="https://imgur.com/zlCUoeD"><img src="https://i.imgur.com/zlCUoeD.png" title="source: imgur.com" /></a>
+<p align="middle"><img src="https://i.imgur.com/zlCUoeD.png" title="source: imgur.com" /></p>
+<p align="middle">Market share of restaurants in Mumbai</p>
  
 <p align="justify">
 Looking at common venues in each neighborhood also concludes that Indian restaurants are the most common restaurants in Mumbai, but other restaurants are gaining popularity steadily. The closest to Indian restaurants in popularity are the Cafe’s and Coffee places. When combined they cover nearly 23% of the market share. Dessert shops in India are generally sweet/confectionery shops and not restaurant per-say, but are quite popular too. 
 </p>
-
-<a href="https://imgur.com/BEVSbCQ"><img src="https://i.imgur.com/BEVSbCQ.png" title="source: imgur.com" /></a>
-<a href="https://imgur.com/P73835K"><img src="https://i.imgur.com/P73835K.png" title="source: imgur.com" /></a>
 
 
 ## Modeling 
@@ -94,57 +93,68 @@ In this technique, initially each data point is considered as an individual clus
 - Let each data point be a cluster
 - Repeat: Merge the two closest clusters and update the proximity matrix until only a single cluster remains.
 
-<a href="https://imgur.com/Ecpqu9d"><img src="https://i.imgur.com/Ecpqu9d.png" title="source: imgur.com" /></a>
+<p align="middle"><img src="https://i.imgur.com/Ecpqu9d.png" title="source: imgur.com" /></p>
+<p align="middle">Dendrogram from Agglomerative Clustering</p>
  
 <p align="justify">
 A highly co-related neighborhood with virtually zero distance between them in the distance matrix can be seen, the locations being Bazargate, Bandra, Bhawani Shankar Road, Chembur, Cotton Exchange, DM Colony, Ghatkopar, Govandi, Haji Ali, NITIE and Raj Bhavan areas. The number of clusters for Kmeans algorithm can also be optimized using the elbow method and calculating the sum of squared error among clusters and the silhouette scores of the model for different values of k. A minor elbow can be observed at k=5 in an otherwise smooth curve. 
 </p>
 
-<a href="https://imgur.com/GJtycYj"><img src="https://i.imgur.com/GJtycYj.png" title="source: imgur.com" /></a>
- 
+<p align="middle"><img src="https://i.imgur.com/GJtycYj.png" title="source: imgur.com" /></p>
+<p align="middle">Elbow Method to tune K-means Clustering Parameters</p>
+
 <p align="justify">
 For k=5 the neighborhoods are clustered in this manner. Even though the model wasn’t trained on any location based data, its not a surprise that closer neighborhoods are more similar to each other, this indicates a good model.
 </p>
 
-<a href="https://imgur.com/i1jgpqc"><img src="https://i.imgur.com/i1jgpqc.png" title="source: imgur.com" /></a>
+<p align="middle"><img src="https://i.imgur.com/i1jgpqc.png" title="source: imgur.com" /></p>
+<p align="middle">Locations clusters for k=5</p> 
  
 <p align="justify">
 This group of neighborhoods have a lot in common as both Agglomerative and Kmeans clustering clustered them into the same group. Once we start out at any one of these locations it would be easier to expand in other locations. Here the overall trend is followed, that Indian restaurants are popular, other than that Dessert shops are quite popular too. Dessert shops in India tend to be Sweet shops and confectioneries, they are not a restaurant per-say but are quite popular. Lets focus on the Coffee shops and Cafe's here. The area is not saturated with it but can be seen as quite popular. Lets narrow our search on the Bandra region of the cluster. Bandra is located at the heart of the city with lot of foot traffic around it. The Bandra Kurla Complex in Bandra is considered the financial hub of the city. 
 </p>
 
-<a href="https://imgur.com/M1eUlQ6"><img src="https://i.imgur.com/M1eUlQ6.png" title="source: imgur.com" /></a>
+<p align="middle"><img src="https://i.imgur.com/M1eUlQ6.png" title="source: imgur.com" /></p>
+<p align="middle">Neighbourhoods with very high similarity scores</p>  
  
 <p align="justify">
 Bandra Kurla Complex is a business and residential district in Bandra, Mumbai. It is a prominent commercial hub in India. According to MMRDA, the complex is the first of a series of "growth centers" created to "arrest further concentration" of offices and commercial activities in South Mumbai. It has aided to decongest the CBD in South Mumbai while seeding new areas of planned commercial real estate in the metropolitan region. There are approximately 400,000 people working in various offices throughout the BKC, which makes it ideal to set up a cafe. Considering a radius of around 5kms around the BKC, equidistant grid points are created about 100m apart from each other. These grid points act as potential candidates for setting up the cafe. The market share graph of Bandra indicates that Cafe’s are not as common in this region as they are in the rest of the city. This is a good indication that there is opportunity to expand in this region. Cafe, perfectly complements our chosen location.The main customers of a cafe in ascending order are, employees or Working class(Proximity to BKC),couples (married & unmarried both),youngsters (17–30)(Proximity to Mumbai University).
 </p>
 
-<a href="https://imgur.com/ghWK3SS"><img src="https://i.imgur.com/ghWK3SS.png" title="source: imgur.com" /></a>
+<p align="middle"><img src="https://i.imgur.com/ghWK3SS.png" title="source: imgur.com" /></p>
+<p align="middle">Market share of restaurants in Bandra</p>   
  
 <p align="justify">
 The equidistant grid-points can be visualized using a map. The points stretch from Dharavi in the south to the Airport in the north. The locations abundantly cover the centre of the city. This part of the city is one of the most accessible.
 </p>
 
-<a href="https://imgur.com/igJay4V"><img src="https://i.imgur.com/igJay4V.png" title="source: imgur.com" /></a>
+<p align="middle"><img src="https://i.imgur.com/igJay4V.png" title="source: imgur.com" /></p>
+<p align="middle">Grid point loactions around BKC</p>    
  
 <p align="justify">
 The density of  restaurants in a region can be visualized using a heat-map. It can be seen that very less area is left untouched by a restaurant, but the same map for cafe tells a completely different story. It shows that only about 15% of the restaurants are cafes. Further analysis revealed that a Cafe is at a distance of approximately 1km from each grid-point whereas a restaurant is at an average distance of 400m.
 </p>
 
-<a href="https://imgur.com/hLcJsMK"><img src="https://i.imgur.com/hLcJsMK.png" title="source: imgur.com" /></a>
-<a href="https://imgur.com/YT5zxoV"><img src="https://i.imgur.com/YT5zxoV.png" title="source: imgur.com" /></a>
- 
+<p align="middle">
+ <img src="https://i.imgur.com/hLcJsMK.png" title="source: imgur.com" />
+ <img src="https://i.imgur.com/YT5zxoV.png" title="source: imgur.com" /></p>
+<p align="middle">(1) Restaurant heatmap (2) Cafe heatmap</p>    
+
 <p align="justify">
 Lets further narrow our region to the place just north of BKC, where the region looks fairly empty of Cafes. This region is in the vicinity of Mumbai University. It gives an added advantage to the Cafe business due to the presence of large population of the target demographic.
 </p>
 
-<a href="https://imgur.com/tuWt0Jv"><img src="https://i.imgur.com/tuWt0Jv.png" title="source: imgur.com" /></a>
+<p align="middle"><img src="https://i.imgur.com/tuWt0Jv.png" title="source: imgur.com" /></p>
+<p align="middle">Loaclity near Mumbai University</p>    
  
 <p align="justify">
 The region looks devoid of competitors. The procedure of making grid-points is repeated with slight variation. The grid-points now only cover regions where there are no Cafes in a 400m radius and no more than 2 restaurants in its vicinity. This step will ensure that the business will have little to no competition from its surroundings. The points of interest can be further clustered into regions using the k-means algorithm. The centers of the clustered locations can be considered the final suggestions for setting up a Cafe. We have created 6 addresses representing centers of zones containing locations with low number of restaurants and no Cafe’s nearby, all zones being fairly close to Bandra Kurla Complex. Although zones are shown on map with a circle, their shape is actually very irregular and their centers/addresses should be considered only as a starting point for exploring area neighborhoods in search for potential restaurant locations.
 </p>
 
-<a href="https://imgur.com/JT0rF2p"><img src="https://i.imgur.com/JT0rF2p.png" title="source: imgur.com" /></a>
-<a href="https://imgur.com/lAKQ4Yc"><img src="https://i.imgur.com/lAKQ4Yc.png" title="source: imgur.com" /></a>
+<p align="middle">
+ <img src="https://i.imgur.com/JT0rF2p.png" title="source: imgur.com" />
+ <img src="https://i.imgur.com/lAKQ4Yc.png" title="source: imgur.com" /></p>
+<p align="middle">(1) Restaurant density heatmap with gridpoints (2) Cluster Centers with least density of restaurants</p>    
 
 
 ## Results and Discussion
